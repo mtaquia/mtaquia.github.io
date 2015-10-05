@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Londrina+Shadow' rel='stylesheet' type='text/css'> 
+<!--  29.-Se agrega fuente  de google para usarlo en el titulo h1-->
+    <style>
+      body {
+        font-family: helvetica, sans-serif;
+        max-width: 600px;/*6.-ancho maximo de 600px*/
+        margin: 0 auto; /*8.- centramos body*/
+        background: #232323;/*38.-Se agrega un color de fondo */
+      }
+     div {
+       height: 200px; /*2.-Asignamos 200px de alto a cada div lo cual los separa*/
+      /*background: url("http://dash.ga.co/assets/firstcourse.jpg"); 3.-Coloca el mismo fondo a los 3 div. Se borra luego de item 8*/
+      background-size:cover;/*4.-Evita tener azulejos/repeticiones de imagen*/
+      /*  background-size: 100%;     En smartphones se ve distorsionado con duplicidad de imágenes.en PC bien*/
+      /* margin: 0 auto;  5.-La imagen en el centro de la pantalla.Se elimina despues de item 8*/
+      position: relative;/*17.-Complemento para que se coloque el <p> al final de div.Pendiente, falta bajar un poco */
+      margin:40px 0 0 0;/*19.-Los div están muy pegados por eso se les da margin*/
+      border-radius: 12px;/*20.-se dibuja un borde redondo.NO se ve los de abajo pq estan ocultos por el <p>*/
+     }
+     h1 {
+      font-family: 'Londrina Shadow', cursive; /*30.-Se agrega estilo para el titulo */
+      font-size:75px; /*31*/
+      text-align:center;/*32*/
+      margin: 60px 0 0 0; /*36.- bajamos un poco pq esta chocando por arriba con el borde*/
+      color: #aaaaaa; /*39.-se cambia color de letra de h1*/
+    }
+    h2 {
+      text-align: center; /*34.-Centrado de texto secundario */
+      /*margin: -50px 0 70px 0; 35.- h2 está muy separado de h1 por eso -50 sube y 70px lo separa de abajo.Luego de 36 se superpone con h1 */
+      margin: 0px 0 70px 0;/*.37.- se cambia -50 por 0 para no superponerse*/
+      color: #bbbbbb;/*40.-color de h2 */
+    }
+    p {
+    color: rgba(255,255,255,1);  /*10.-color de letra blanco solido*/  
+    /* background: rgba(0,0,0,1); 11.-color de fondo negro solido. Reemplazo por item 25*/
+    background-color:black; /*28.-Problemas gradientes con IE, se coloca fondo negro por defecto */
+    background: linear-gradient(bottom,rgba(0,0,0,1), rgba(0,0,0,.4)); /*25.-Añade gradientes de abajo negro hacia arriba negro al 40% , a implementarse*/
+    background: -webkit-linear-gradient(bottom,rgba(0,0,0,1),rgba(0,0,0,.4)); /*26.-Gradiente para chrome , opera,safari*/
+    background: -moz-linear-gradient(bottom,rgba(0,0,0,1),rgba(0,0,0,.4));/*27.-Gradiente para Mozilla Firefox*/
+    padding: 10px;/*12.-Borde interno de 10px para todos los lados*/
+    text-align:justify;/*13.-Justifica el texto en el párrafo.Tenemos right , left*/
+    line-height: 28px; /*14.-Aumenta la Separación entre párrafos.En este momento el parr se encuentra al medio del div, se desea que esté abajo*/
+    position: absolute;/*15.-Rompe flujo normal */
+    bottom: 0;/*16.-Se desea colocar en la parte baja de cada div. FAlta ya que se colocan juntos superpuestos en la parte baja de la pagina*/
+    margin: 0;/*18.-Quedaba pendiente quitarle los margenes por defecto de p . Luego de esto <p> baja al tope de div*/
+    height: 30px; /*50.- Baja el texto , para ocultar la descripción. Minimiza el espacio predeterminado para que solo entre el encabezado*/
+    transition: height .5s; /* 57.- Transicion pra los cambios en etiqueta height ,el standar a futuro y para chrome y Mozilla Firefox*/
+    -webkit-transition: height .5s;
+    -moz-transition: height .5s;
+   }
+    small {
+    opacity: 0;   /*51.-Oculta el texto de abajo de p.Opacity 1 muestra todo */
+    }
+   .show-description p {
+     height: 150px; /*52.-Agranda espacio de p de 30 a 150 para que se muestre otra vez*/
+    }
+   .show-description small {
+    opacity: 1;  /*53.-Muestra otra vez el contenido del menú*/
+   }
+   .first {
+     background: url("http://dash.ga.co/assets/firstcourse.jpg");  /*9.-cada clase tiene su propio fondo*/
+   }
+   .second {
+     background: url("http://dash.ga.co/assets/secondcourse.jpg");  
+    }
+   .dessert {
+     background: url("http://dash.ga.co/assets/dessertcourse.jpg");  
+    }
+  
+   .price{ /*22.-Se crea clace*/
+      /* text-align: right;  23.-Se coloca a la derecha el span pero no se mueve,falta algo.*/
+    float: right; /*24.- Con esto el precio se coloca a la derecha (funciona un elementro dentro de p) .Se elimina item 23*/
+    }
+ 
+  /*41.-Problemas al visualizar en celulares,se ajusta para smartphones de maximo 500px de ancho*/
+   @media (max-width: 500px) {
+    h1 {
+      font-size: 50px; /*42.-Se reduce la fuente de h1 a 50px (antes 75px)*/
+      margin-top:20px; /*43.-Rebaja el margin top de 60 a 20*/
+      line-height:40px/*44.-Disminuye el espacio vertical entre las palabras */
+    }
+    h2 {
+    font-size: 20px;  /*45.-No tiene seteado inicial defecto 24px , bajamos a 20px*/
+    margin: 20px 0 30px 0; /*46.- Damos una separacion superior de 20 para mejor lectura y disminuimos inferior de 70 a 30*/
+    }
+    div {
+      margin: 20px 12px 0 12px;/*47.-superior inicial 40 ,baja a 20. SE agrega margen izq y derecho a 12 .*/
+    }
+    p{
+    font-size:20px; /*48.-Se aumenta la fuente por defecto del texto*/
+    line-height:24px;/*49.-Se disminuye la separación vertical*/
+    }
+    small {
+    font-size: 16px;  /*Le asigna la fuente 16px*/
+    }
+  }
+ </style>
+
+</head>
+
+<body>
+  <h1>esha's restaurant</h1>
+  <h2>A New York City Eatery</h2> <!--33.-Agregando un titulo secundario -->
+  <div class="first show-description">  <!-- 1.-Se agrega div a cada item del menu.7.- agregamos nombres a las clases.54.-add class show-description -->
+   <!--<h2>welsh onion soko $14</h2> Va a desaparecer ya que no se puede bajar .Se hará artificio , despues de activ 18.Se agrega salto de linea y small en subtexto-->
+   <p>welsh onion soko<span class="price">$14</span> <br /> <!--21.-Colocamos span para poder pegar el precio a la derecha-->
+     <small>Mustard sierra leone bologi kale chard beet greens black-eyed pea sorrel amaranth garlic tigernut spring onion summer purslane asparagus lentil. </small>
+   </p>
+  </div>
+  <div class="second show-description"> <!--54.-agregamos class show-description.Luego de esto ,se ve el cuadro p con su contenido-->
+   <!--<h2>pastrami boudin tongue $22</h2>-->
+    <p>pastrami boudin tongue <span class="price">$22</span><br />
+      <small>Tri-tip capicola kielbasa salami brisket chicken rump strip steak drumstick. Meatloaf chuck boudin ribeye pork jowl. Andouille bacon jowl meatloaf pork            loin prosciutto bresaola.</small>
+    </p>
+  </div>
+  <div class="dessert show-description">
+    <!--<h2>fruitcake marzipan pudding dragee $8</h2>-->
+    <p>fruitcake marzipan pudding dragee <span class="price">$8</span><br />
+      <small>Lollipop tart cotton candy jelly-o carrot cake apple pie cupcake. Jelly-o bear claw ice cream candy canes.</small>
+    </p>
+  </div>
+  <script>
+    /*alert("Javascript works!");  55.-Prueba de javascript*/
+    $('div').on('click', function() { /*56.-cambiar entre mostrar y no mostrar*/
+      $(this).toggleClass('show-description');  
+    });
+  </script>
+</body>
+</html>
